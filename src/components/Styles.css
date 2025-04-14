@@ -1,0 +1,15 @@
+.button-new {
+    background: #ffc107;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    borderRadius: 4px;
+  }
+
+.button-cancel {
+    background: #e2e2e2;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    borderRadius: 4px;
+  }
