@@ -12,7 +12,7 @@ const Cuentas: React.FC = () => {
   const [textoBusqueda, setTextoBusqueda] = useState('');
   const [cuentas, setCuentas] = useState<Cuenta[]>([]);
 
-  const handleSearch = async () => {
+  const handleBusqueda = async () => {
     try {
       let url = `http://localhost:8081/cuentas`;
       if (textoBusqueda) {          
@@ -33,7 +33,7 @@ const Cuentas: React.FC = () => {
 
   const handleClicEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      handleBusqueda();
     }
   };
 

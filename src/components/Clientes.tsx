@@ -1,4 +1,3 @@
-// src/components/Clientes.tsx
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './Styles.css';
@@ -16,7 +15,7 @@ interface Cliente {
 }
 
 const Clientes: React.FC = () => {
-  const [searchText, setSearchText] = useState('');
+  const [textoBusqueda, setTextoBusqueda] = useState('');
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCliente, setNewCliente] = useState<Cliente>({
@@ -31,11 +30,11 @@ const Clientes: React.FC = () => {
     estado: true,
   });
 
-  const handleSearch = async () => {
+  const handleBusqueda = async () => {
     try {
         let url = `http://localhost:8081/clientes`;
-        if (searchText) {          
-            url = `http://localhost:8081/clientes/${searchText}`;
+        if (textoBusqueda) {          
+            url = `http://localhost:8081/clientes/${textoBusqueda}`;
         }
       const response = await fetch(url);  
       const data: Cliente[] = await response.json();
@@ -52,7 +51,7 @@ const Clientes: React.FC = () => {
 
   const handleClicEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      handleBusqueda();
     }
   };
 
@@ -80,7 +79,7 @@ const Clientes: React.FC = () => {
 
       if (response.ok) {
         handleCloseModal();
-        handleSearch();
+        handleBusqueda();
       } else {
         console.error('Error al crear cliente:', response.statusText);
       }
@@ -96,8 +95,8 @@ const Clientes: React.FC = () => {
         <input
           type="text"
           placeholder="Buscar"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          value={textoBusqueda}
+          onChange={(e) => setTextoBusqueda(e.target.value)}
           onKeyDown={handleClicEnter}
           style={{
             padding: '8px',
